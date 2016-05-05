@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import {reduxForm} from 'redux-form';
+import {createPost} from '../actions/index';
 
 class PostsNew extends Component {
   render() {
     const { fields: {title, categories, content}, handleSubmit} = this.props; //es6 syntax
     return (
-      <form onSubmit={handleSubmit}> //this helper checks if all fields all full
+      <form onSubmit={handleSubmit(this.props.createPost)}>
         <h3>Create a new post</h3>
         <div className="form-group">
           <label>Title</label>
-          <input type="text" className="form-control" {...title} /> //passing the config object
+          <input type="text" className="form-control" {...title} />
         </div>
 
         <div className="form-group">
@@ -34,9 +35,9 @@ export default reduxForm({
   form: 'PostsNew',
   fields: [
     'title',
-    'category',
+    'categories',
     'content'
   ]
-})(PostsNew);
+}, null, {createPost})(PostsNew);
 
 //user types smth, record it on app state
