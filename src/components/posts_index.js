@@ -18,4 +18,4 @@ class PostsIndex extends Component {
 //   return bindActionCreators({fetchPosts}, dispatch);
 // } this can be removed and use that shortcut below. We are mapping the action to this component's props
 
-export default connect(null, {fetchPost})(PostsIndex); //es6 syntax
+export default connect(null, {fetchPosts})(PostsIndex); //es6 syntax
