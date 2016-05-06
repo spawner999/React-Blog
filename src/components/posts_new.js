@@ -11,6 +11,9 @@ class PostsNew extends Component {
         <div className="form-group">
           <label>Title</label>
           <input type="text" className="form-control" {...title} />
+          <div className="text-help">
+            {title.touched ? title.error : ''}
+          </div>
         </div>
 
         <div className="form-group">
@@ -31,13 +34,24 @@ class PostsNew extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if(!values.title) {
+    errors.title = 'Enter a username';
+  }
+
+  return errors;
+}
+
 export default reduxForm({
   form: 'PostsNew',
   fields: [
     'title',
     'categories',
     'content'
-  ]
+  ],
+  validate
 }, null, {createPost})(PostsNew);
 
 //user types smth, record it on app state
